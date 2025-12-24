@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For My Sweetie Harshi 💗</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #f08080;
+            --bg-color: #fce4ec;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* Christmas Snowfall Background */
+        .snow-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .snowflake {
+            position: absolute;
+            background-color: white;
+            border-radius: 50%;
+            opacity: 0.8;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            to { transform: translateY(110vh); }
+        }
+
+        .container {
+            height: 550px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        .envelope-wrapper {
+            position: relative;
+            width: 300px;
+            height: 200px;
+        }
+
+        .envelope {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: var(--primary);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+
+        /* TEXT ON THE OUTSIDE OF THE ENVELOPE */
+        .envelope-text {
+            position: absolute;
+            z-index: 10;
+            font-family: 'Dancing Script', cursive;
+            color: white;
+            font-size: 20px;
+            text-align: center;
+            width: 100%;
+            top: 130px; 
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+        }
+
+        .front {
+            position: absolute;
+            width: 0;
+            height: 0;
+            z-index: 3;
+            border-bottom: 110px solid #f29b9b;
+            border-left: 150px solid transparent;
+            border-right: 150px solid transparent;
+            bottom: 0;
+        }
+
+        .envelope::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            z-index: 4;
+            border-top: 100px solid var(--primary);
+            border-left: 150px solid transparent;
+            border-right: 150px solid transparent;
+            transform-origin: top;
+            transition: all 0.5s ease-in-out;
+        }
+
+        /* The Letter - Perfectly Invisible when closed */
+        .letter {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            width: 280px;
+            height: 180px;
+            background-color: #fffdf5;
+            background-image: radial-gradient(#f08080 0.5px, transparent 0.5px);
+            background-size: 15px 15px;
+            z-index: 1;
+            transition: all 0.8s ease-in-out;
+            padding: 20px;
+            box-sizing: border-box;
+            overflow-y: auto;
+            opacity: 0; 
+            border: 1px solid #f0e68c;
+        }
+
+        .text {
+            font-family: 'Dancing Script', cursive;
+            font-size: 15px;
+            color: #444;
+            line-height: 1.6;
+        }
+
+        .signature { text-align: right; margin-top: 20px; font-weight: 600; }
+
+        /* Animation Trigger */
+        .flap > .envelope::before { transform: rotateX(180deg); z-index: 0; }
+
+        .flap > .envelope .letter {
+            transform: translateY(-180px) scale(1.4);
+            z-index: 10;
+            height: 380px;
+            opacity: 1;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        }
+
+        .flap .envelope-text { opacity: 0; }
+
+        .heart-seal {
+            position: absolute;
+            top: 50%; left: 50%;
+            width: 25px; height: 25px;
+            background: #ff3333;
+            z-index: 5;
+            transform: translate(-50%, -15%) rotate(45deg);
+            transition: 0.5s;
+        }
+        .heart-seal:before, .heart-seal:after {
+            content: ""; position: absolute;
+            width: 25px; height: 25px;
+            background: #ff3333; border-radius: 50%;
+        }
+        .heart-seal:before { top: -12px; left: 0; }
+        .heart-seal:after { left: -12px; top: 0; }
+
+        .flap > .heart-seal { transform: translate(-50%, -200px) scale(0); }
+
+        .heart-particle {
+            position: fixed; bottom: -100px;
+            pointer-events: none;
+            animation: rise 3s linear forwards;
+            z-index: 100; font-size: 2rem;
+        }
+
+        @keyframes rise {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-110vh) rotate(360deg); opacity: 0; }
+        }
+
+        .buttons { margin-top: 130px; }
+
+        button {
+            background: var(--primary);
+            color: white; border: none;
+            padding: 12px 35px; margin: 0 15px;
+            border-radius: 4px; font-weight: 600;
+            cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="snow-container" id="snow"></div>
+
+    <audio id="loveSong">
+        <source src="https://files.catbox.moe/0v7r2z.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="container">
+        <div class="envelope-wrapper">
+            <div class="envelope">
+                <div class="envelope-text">For the one who owns my heart...<br>open me 💖</div>
+                
+                <div class="letter">
+                    <div class="text">
+                        <strong>Heyy Harshika 💗</strong>
+                        <p>My sweetie, I’m so sorry for whatever I did today, my darling 🥹. If I made you overthink or feel even a little sad… please believe me, sweetheart, that was never my intention 🫶.</p>
+                        <p>All I ever want is to see you happy with me, my Harshi 💖. Hamesha smiling, laughing, hasti‑khelti ✨. Because your smile, sweetie… it’s my favorite thing in this whole world 🥹💗.</p>
+                        <p>I can’t see you cry, my darling… it breaks me in ways I can’t explain 💔. And I swear, sweetheart, I’ll never let anyone—ever—make you cry 🫶. Because you’re my heart, my soul, my everything, Harshi 🌷💓.</p>
+                        <p>I’ll protect you with all that I am, my sweetie, and I’ll treat you exactly the way my heart deserves you, my baby 🥹💖. I crave your name, darling, in every single breath of mine 🫠💗. In every heartbeat 💓. In every shadow of every night ⭐. You’ll always be mine, sweetheart, and only mine ♾️✨.</p>
+                        <p>I love you more than the stars love the night sky, my Harshi 💖🌌. More than the moon loves watching over the world 🌙. More than the sun loves the morning 🌞. You’re my first thought when I wake up, sweetie, my last thought when I fall
